@@ -1,0 +1,12 @@
+= hips
+
+. Collect input files
+. ?
+. Profit
+
+== Prerequisites
+
+* Apache Maven 3+
+* JDK 8+
+* Fortitude
+
