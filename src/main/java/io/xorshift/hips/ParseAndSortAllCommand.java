@@ -1,6 +1,9 @@
 package io.xorshift.hips;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +14,7 @@ import java.util.List;
 class ParseAndSortAllCommand {
 
   private final List<File> files;
+  private final People people;
 
   static ParseAndSortAllCommand create(List<File> files) {
     if (files == null || files.size() == 0) {
@@ -21,10 +25,50 @@ class ParseAndSortAllCommand {
 
   private ParseAndSortAllCommand(List<File> files) {
     this.files = files;
+    this.people = new InMemoryPeople();
   }
 
   void execute() {
-    System.out.println("ParseAndSortAllCommand NOOP");
+    try {
+      for (File f : files) {
+        readInputFile(f);
+      }
+
+      writeOutputFiles();
+
+    } catch (IOException e) {
+      throw new RuntimeException("error running command", e);
+    }
+  }
+
+  private void readInputFile(File f) throws IOException {
+    final BufferedReader br = new BufferedReader(new FileReader(f));
+
+    String line;
+    while ((line = br.readLine()) != null) {
+      people.add(Person.createFromCsv(line));
+    }
+
+    br.close();
+  }
+
+  private void writeOutputFiles() {
+    System.out.println("OUTPUT 1 - SORTED BY GENDER AND THEN BY LAST NAME ASCENDING");
+    for (Person p : people.sortedByGender()) {
+      System.out.println(p.toCsv());
+    }
+    System.out.println();
+
+    System.out.println("OUTPUT 2 - SORTED BY BIRTH DATE ASCENDING");
+    for (Person p : people.sortedByBirthDate()) {
+      System.out.println(p.toCsv());
+    }
+    System.out.println();
+
+    System.out.println("OUTPUT 3 - SORTED BY LAST NAME DESCENDING");
+    for (Person p : people.sortedByLastName()) {
+      System.out.println(p.toCsv());
+    }
   }
 
 }

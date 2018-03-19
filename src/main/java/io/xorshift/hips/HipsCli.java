@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class HipsCli {
 
-  @Parameter(names = "-files", description = "Comma separated list of file names to process. Header may be included or omitted. Supported delimiters include command, pipe, and space", required = true, converter = FileConverter.class)
+  @Parameter(names = "-files", description = "Comma separated list of file names to process. Supported delimiters include command, pipe, and space", required = true, converter = FileConverter.class)
   private List<File> files = Collections.emptyList();
 
   @Parameter(names = "-help", help = true)
