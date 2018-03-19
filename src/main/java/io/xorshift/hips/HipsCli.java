@@ -40,7 +40,7 @@ public class HipsCli {
 
       } else if (cli.version) {
         final Console console = JCommander.getConsole();
-        console.println(Version.toBuildString());
+        console.println(Version.buildString());
         console.println("");
 
       } else {
