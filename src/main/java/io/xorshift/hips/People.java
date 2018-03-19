@@ -10,6 +10,8 @@ interface People {
 
   void add(Person p);
 
+  List<Person> all();
+
   List<Person> sortedByGender();
 
   List<Person> sortedByBirthDate();

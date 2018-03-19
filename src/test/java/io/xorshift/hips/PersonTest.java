@@ -12,20 +12,15 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class PersonTest {
 
-  private static String INPUT_COMMA_RECORD = "Chip,Foose,M,MetallicOrange,2004-10-12";
-  private static String INPUT_PIPE_RECORD = "Chip|Foose|M|MetallicOrange|2004-10-12";
-  private static String INPUT_SPACE_RECORD = "Chip Foose M MetallicOrange 2004-10-12";
-
-  private static String INPUT_BAD_BIRTH_DATE_RECORD = "Chip,Foose,M,MetallicOrange,2004/10/12";
-
-  private static String OUTPUT_CSV_RECORD = "Chip,Foose,M,MetallicOrange,10/12/2004";
+  private static final String INPUT_BAD_BIRTH_DATE_RECORD = "Chip,Foose,M,MetallicOrange,2004/10/12";
+  private static final String OUTPUT_CSV_RECORD = "Chip,Foose,M,MetallicOrange,10/12/2004";
 
   @Test
   public void createFromCsvUsingCommaDelimiter() {
     // Setup
 
     // Exercise
-    final Person p = Person.createFromCsv(INPUT_COMMA_RECORD);
+    final Person p = Person.createFromCsv(PersonFixture.CHIP_FOOSE_COMMA);
 
     // Verify
     assertChipFoose(p);
@@ -36,7 +31,7 @@ public class PersonTest {
     // Setup
 
     // Exercise
-    final Person p = Person.createFromCsv(INPUT_PIPE_RECORD);
+    final Person p = Person.createFromCsv(PersonFixture.CHIP_FOOSE_PIPE);
 
     // Verify
     assertChipFoose(p);
@@ -47,7 +42,7 @@ public class PersonTest {
     // Setup
 
     // Exercise
-    final Person p = Person.createFromCsv(INPUT_SPACE_RECORD);
+    final Person p = Person.createFromCsv(PersonFixture.CHIP_FOOSE_SPACE);
 
     // Verify
     assertChipFoose(p);
@@ -67,7 +62,7 @@ public class PersonTest {
   @Test
   public void toCsv() {
     // Setup
-    final Person p = Person.createFromCsv(INPUT_PIPE_RECORD);
+    final Person p = Person.createFromCsv(PersonFixture.CHIP_FOOSE_PIPE);
 
     // Exercise
     final String csv = p.toCsv();
@@ -79,8 +74,8 @@ public class PersonTest {
   @Test
   public void equalTo() {
     // Setup
-    final Person p1 = Person.createFromCsv(INPUT_COMMA_RECORD);
-    final Person p2 = Person.createFromCsv(INPUT_COMMA_RECORD);
+    final Person p1 = Person.createFromCsv(PersonFixture.CHIP_FOOSE_SPACE);
+    final Person p2 = Person.createFromCsv(PersonFixture.CHIP_FOOSE_SPACE);
 
     // Exercise
     final boolean equalsResult = p1.equals(p2);
@@ -94,9 +89,8 @@ public class PersonTest {
   @Test
   public void sameHash() {
     // Setup
-    final Person p1 = Person.createFromCsv(INPUT_COMMA_RECORD);
-    final Person p2 = Person.createFromCsv(INPUT_COMMA_RECORD);
-
+    final Person p1 = Person.createFromCsv(PersonFixture.CHIP_FOOSE_SPACE);
+    final Person p2 = Person.createFromCsv(PersonFixture.CHIP_FOOSE_SPACE);
 
     // Exercise
     final long hashResult1 = p1.hashCode();
@@ -115,4 +109,5 @@ public class PersonTest {
     assertThat(actual.favoriteColor()).isEqualTo("MetallicOrange");
     assertThat(actual.dateOfBirth()).isEqualTo(Date.valueOf("2004-10-12"));
   }
+
 }

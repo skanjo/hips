@@ -9,17 +9,22 @@ import java.util.stream.Collectors;
  * @author Samer Kanjo
  * @since 0.2.0 3/16/18 10:38 PM
  */
-class InMemoryPeople implements People {
+public class InMemoryPeople implements People {
 
   private final List<Person> data;
 
-  InMemoryPeople() {
+  public InMemoryPeople() {
     data = new ArrayList<>();
   }
 
   @Override
   public void add(Person p) {
     data.add(p);
+  }
+
+  @Override
+  public List<Person> all() {
+    return new ArrayList<>(data);
   }
 
   @Override

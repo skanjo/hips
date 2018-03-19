@@ -10,7 +10,8 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
   PersonTest.class,
-  VersionTest.class
+  VersionTest.class,
+  InMemoryPeopleTest.class
 })
 public class AllTestSuite {
 }
