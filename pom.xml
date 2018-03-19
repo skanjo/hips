@@ -7,13 +7,20 @@
 
   <groupId>io.xorshift</groupId>
   <artifactId>hips</artifactId>
-  <version>0.2.0-SNAPSHOT</version>
+  <version>0.3.0-SNAPSHOT</version>
+
+  <name>HipsCli</name>
 
   <properties>
     <java.source.version>1.8</java.source.version>
     <java.target.version>1.8</java.target.version>
+
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
     <main.class>io.xorshift.hips.HipsCli</main.class>
+
+    <build.revision>${maven.build.timestamp}</build.revision>
+    <maven.build.timestamp.format>yyyy-MM-dd'T'HH:mm:ss.SSSZ</maven.build.timestamp.format>
   </properties>
 
   <dependencies>
@@ -61,6 +68,19 @@
               </transformers>
               <outputFile>${project.build.directory}/hipscli.jar</outputFile>
             </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>templating-maven-plugin</artifactId>
+        <version>1.0.0</version>
+        <executions>
+          <execution>
+            <id>filter-src</id>
+            <goals>
+              <goal>filter-sources</goal>
+            </goals>
           </execution>
         </executions>
       </plugin>

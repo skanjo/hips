@@ -19,8 +19,11 @@ public class HipsCli {
   @Parameter(names = "-files", description = "Comma separated list of file names to process. Supported delimiters include command, pipe, and space", required = true, converter = FileConverter.class)
   private List<File> files = Collections.emptyList();
 
-  @Parameter(names = "-help", help = true)
+  @Parameter(names = "-help", description = "Display usage", help = true)
   private boolean help = false;
+
+  @Parameter(names = "-version", description = "Display version number", help = true)
+  private boolean version = false;
 
   public static void main(String[] args) {
     final HipsCli cli = new HipsCli();
@@ -34,6 +37,11 @@ public class HipsCli {
 
       if (cli.help) {
         cmd.usage();
+
+      } else if (cli.version) {
+        final Console console = JCommander.getConsole();
+        console.println(Version.toBuildString());
+        console.println("");
 
       } else {
         ParseAndSortAllCommand.create(cli.files).execute();
