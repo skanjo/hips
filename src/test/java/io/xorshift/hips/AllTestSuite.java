@@ -12,7 +12,8 @@ import org.junit.runners.Suite;
   PersonTest.class,
   VersionTest.class,
   InMemoryPeopleTest.class,
-  MergeAndSortPeopleTest.class
+  MergeAndSortPeopleTest.class,
+  ConfigTest.class
 })
 public class AllTestSuite {
 

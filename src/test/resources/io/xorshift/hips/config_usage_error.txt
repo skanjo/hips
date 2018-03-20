@@ -1,0 +1,13 @@
+Error: EXCEPTION MESSAGE
+
+Usage: HipsCli [options]
+  Options:
+  * -files
+      Comma separated list of file names to process. Supported delimiters 
+      include command, pipe, and space
+      Default: []
+    -help
+      Display usage
+    -version
+      Display version number
+
