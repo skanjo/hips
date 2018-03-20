@@ -23,6 +23,7 @@
   </properties>
 
   <modules>
+    <module>people</module>
     <module>cli</module>
     <module>http</module>
   </modules>
