@@ -9,13 +9,11 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-  PersonTest.class,
   VersionTest.class,
-  InMemoryPeopleTest.class,
   MergeAndSortPeopleTest.class,
   ConfigTest.class,
   HipsCliTest.class
 })
-public class AllTestSuite {
+public class CliTestSuite {
 
 }
