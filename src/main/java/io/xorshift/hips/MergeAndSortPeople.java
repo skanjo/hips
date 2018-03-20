@@ -33,7 +33,7 @@ class MergeAndSortPeople {
       readers.add(new FileReader(f));
     }
 
-    return new MergeAndSortPeople(readers, new PrintWriter(System.out), people);
+    return new MergeAndSortPeople(readers, new PrintWriter(System.out, true), people);
   }
 
   MergeAndSortPeople(List<Reader> readers, PrintWriter writer, People people) {
