@@ -16,7 +16,7 @@ public class HipsCli {
     this.config = config;
   }
 
-  private void run() throws IOException {
+  void run() throws IOException {
     if (config.requestedHelp()) {
       config.showUsage();
 

@@ -13,7 +13,8 @@ import org.junit.runners.Suite;
   VersionTest.class,
   InMemoryPeopleTest.class,
   MergeAndSortPeopleTest.class,
-  ConfigTest.class
+  ConfigTest.class,
+  HipsCliTest.class
 })
 public class AllTestSuite {
 
