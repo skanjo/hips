@@ -3,10 +3,9 @@ package io.xorshift.hips;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
-import com.beust.jcommander.converters.FileConverter;
 import com.beust.jcommander.internal.Console;
 
-import java.io.File;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
@@ -16,8 +15,8 @@ import java.util.List;
  */
 public class HipsCli {
 
-  @Parameter(names = "-files", description = "Comma separated list of file names to process. Supported delimiters include command, pipe, and space", required = true, converter = FileConverter.class)
-  private List<File> files = Collections.emptyList();
+  @Parameter(names = "-files", description = "Comma separated list of file names to process. Supported delimiters include command, pipe, and space", required = true)
+  private List<String> filePaths = Collections.emptyList();
 
   @Parameter(names = "-help", description = "Display usage", help = true)
   private boolean help = false;
@@ -44,11 +43,11 @@ public class HipsCli {
         console.println("");
 
       } else {
-        ParseAndSortAllCommand.create(cli.files).execute();
+        MergeAndSortPeople.create(cli.filePaths).execute();
       }
 
 
-    } catch (ParameterException e) {
+    } catch (ParameterException | IOException e) {
       final Console console = JCommander.getConsole();
       console.println("Error: " + e.getMessage());
       console.println("");

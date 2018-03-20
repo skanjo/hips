@@ -11,7 +11,9 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
   PersonTest.class,
   VersionTest.class,
-  InMemoryPeopleTest.class
+  InMemoryPeopleTest.class,
+  MergeAndSortPeopleTest.class
 })
 public class AllTestSuite {
+
 }

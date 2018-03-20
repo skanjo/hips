@@ -1,0 +1,14 @@
+OUTPUT 1 - SORTED BY GENDER AND THEN BY LAST NAME ASCENDING
+Courtney,Hansen,F,Blue,3/17/2005
+Chip,Foose,M,MetallicOrange,10/12/2004
+Chris,Jacobs,M,Black,6/26/2008
+
+OUTPUT 2 - SORTED BY BIRTH DATE ASCENDING
+Chip,Foose,M,MetallicOrange,10/12/2004
+Courtney,Hansen,F,Blue,3/17/2005
+Chris,Jacobs,M,Black,6/26/2008
+
+OUTPUT 3 - SORTED BY LAST NAME DESCENDING
+Chris,Jacobs,M,Black,6/26/2008
+Courtney,Hansen,F,Blue,3/17/2005
+Chip,Foose,M,MetallicOrange,10/12/2004
