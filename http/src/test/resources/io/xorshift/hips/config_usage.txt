@@ -1,0 +1,10 @@
+Usage: HipsHttp [options]
+  Options:
+    -port
+      Port number
+      Default: 8080
+    -version
+      Display version number
+    -help
+      Display usage
+
