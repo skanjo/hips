@@ -8,11 +8,13 @@ import com.google.gson.GsonBuilder;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
 import io.vertx.core.Handler;
+import io.vertx.core.http.HttpHeaders;
 import io.vertx.core.http.HttpServerResponse;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.handler.BodyHandler;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 
@@ -28,16 +30,16 @@ public class HttpServer extends AbstractVerticle {
   private final People people;
   private String failMessage;
 
-  HttpServer(int port, People people) {
+  HttpServer(int port, People people) throws IOException {
     this.port = port;
     this.people = people;
+
+    URL url = Resources.getResource("io/xorshift/hips/fail_whale.txt");
+    failMessage = Resources.toString(url, Charsets.UTF_8);
   }
 
   @Override
-  public void start(Future<Void> startFuture) throws Exception {
-    URL url = Resources.getResource("io/xorshift/hips/fail_whale.txt");
-    failMessage = Resources.toString(url, Charsets.UTF_8);
-
+  public void start(Future<Void> startFuture) {
     final Router r = Router.router(vertx);
 
     r.route("/records").handler(BodyHandler.create().setBodyLimit(1024));
@@ -60,32 +62,32 @@ public class HttpServer extends AbstractVerticle {
     });
   }
 
-  @Override
-  public void stop(Future<Void> stopFuture) throws Exception {
-    super.stop(stopFuture);
-  }
+  void addPerson(RoutingContext event) {
+    final HttpServerResponse httpResp = event.response();
 
-  private void addPerson(RoutingContext event) {
     final String body = event.getBodyAsString();
     if (Strings.isNullOrEmpty(body)) {
-      event.response().setStatusCode(400).end();
+      httpResp.setStatusCode(400);
 
     } else {
       final Person p = Person.createFromCsv(body);
       people.add(p);
-      event.response().setStatusCode(204).end();
+
+      httpResp.setStatusCode(204);
     }
+
+    httpResp.end();
   }
 
-  private void peopleSortedByGender(RoutingContext event) {
+  void peopleSortedByGender(RoutingContext event) {
     sendPeopleResponse(event, people.sortedByGender());
   }
 
-  private void peopleSortedByBirthDate(RoutingContext event) {
+  void peopleSortedByBirthDate(RoutingContext event) {
     sendPeopleResponse(event, people.sortedByBirthDate());
   }
 
-  private void peopleSortedByLastName(RoutingContext event) {
+  void peopleSortedByLastName(RoutingContext event) {
     sendPeopleResponse(event, people.sortedByLastName());
   }
 
@@ -94,15 +96,15 @@ public class HttpServer extends AbstractVerticle {
     final String json = gson.toJson(data);
 
     final HttpServerResponse httpResp = event.response();
+    httpResp.putHeader(HttpHeaders.CONTENT_TYPE, "application/json");
     httpResp.setStatusCode(200);
-    httpResp.putHeader("Content-Type", "application/json");
     httpResp.end(json);
   }
 
-  private void failure(RoutingContext event) {
+  void failure(RoutingContext event) {
     final HttpServerResponse httpResp = event.response();
+    httpResp.putHeader(HttpHeaders.CONTENT_TYPE, "text/plain");
     httpResp.setStatusCode(500);
-    httpResp.putHeader("Content-Type", "text/plain");
     httpResp.end(failMessage);
   }
 

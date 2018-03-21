@@ -13,12 +13,12 @@ import static org.mockito.Mockito.*;
  */
 public class HipsHttpTest {
   private Config config;
-  private HipsHttp cli;
+  private HipsHttp http;
 
   @Before
   public void setUp() {
     config = mock(Config.class);
-    cli = new HipsHttp(config);
+    http = new HipsHttp(config);
   }
 
   @Test
@@ -27,7 +27,7 @@ public class HipsHttpTest {
     when(config.requestedHelp()).thenReturn(true);
 
     // Exercise
-    cli.run();
+    http.run();
 
     // Verify
     verify(config).showUsage();
@@ -39,7 +39,7 @@ public class HipsHttpTest {
     when(config.requestedVersion()).thenReturn(true);
 
     // Exercise
-    cli.run();
+    http.run();
 
     // Verify
     verify(config).showVersion();
@@ -55,11 +55,14 @@ public class HipsHttpTest {
     when(config.requestedVersion()).thenReturn(false);
     when(config.port()).thenReturn(8080);
 
+    final HipsHttp httpSpy = spy(http);
+    doNothing().when(httpSpy).launchServer();
+
     // Exercise
-    cli.run();
+    httpSpy.run();
 
     // Verify
-//    verify(config).port();
+    verify(httpSpy).launchServer();
   }
 
 }

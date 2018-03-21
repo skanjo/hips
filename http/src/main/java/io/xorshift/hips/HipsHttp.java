@@ -36,7 +36,7 @@ public class HipsHttp {
   }
 
   void launchServer() throws IOException {
-    URL url = Resources.getResource("io/xorshift/hips/banner.txt");
+    final URL url = Resources.getResource("io/xorshift/hips/banner.txt");
     final String banner = Resources.toString(url, Charsets.UTF_8);
 
     final VertxOptions vopt = new VertxOptions();

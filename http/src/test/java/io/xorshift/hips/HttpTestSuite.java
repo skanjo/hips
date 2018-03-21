@@ -11,7 +11,8 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
   VersionTest.class,
   ConfigTest.class,
-  HipsHttpTest.class
+  HipsHttpTest.class,
+  HttpServerTest.class
 })
 public class HttpTestSuite {
 
