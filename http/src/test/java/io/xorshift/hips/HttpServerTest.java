@@ -139,4 +139,17 @@ public class HttpServerTest {
     verify(httpResp).end(expected);
   }
 
+  @Test
+  public void healthCheck() {
+    // Setup
+
+    // Exercise
+    server.healthCheck(event);
+
+    // Verify
+    verify(httpResp).putHeader(eq(HttpHeaders.CONTENT_TYPE), eq("text/plain"));
+    verify(httpResp).setStatusCode(200);
+    verify(httpResp).end("OK");
+  }
+
 }

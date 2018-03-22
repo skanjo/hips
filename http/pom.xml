@@ -70,6 +70,11 @@
       <artifactId>assertj-core</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>
@@ -106,6 +111,37 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>com.bazaarvoice.maven.plugins</groupId>
+        <artifactId>process-exec-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>switchboard-process</id>
+            <phase>pre-integration-test</phase>
+            <goals>
+              <goal>start</goal>
+            </goals>
+            <configuration>
+              <name>HipsHttp</name>
+              <waitForInterrupt>false</waitForInterrupt>
+              <healthcheckUrl>http://localhost:8080/healthcheck</healthcheckUrl>
+              <arguments>
+                <argument>java</argument>
+                <argument>-jar</argument>
+                <argument>${basedir}/target/hipshttp.jar</argument>
+              </arguments>
+            </configuration>
+          </execution>
+          <execution>
+            <id>stop-all</id>
+            <phase>post-integration-test</phase>
+            <goals>
+              <goal>stop-all</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
+
 </project>

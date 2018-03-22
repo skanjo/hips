@@ -72,6 +72,11 @@
         <artifactId>assertj-core</artifactId>
         <version>3.9.1</version>
       </dependency>
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpclient</artifactId>
+        <version>4.5.5</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -148,6 +153,11 @@
               </goals>
             </execution>
           </executions>
+        </plugin>
+        <plugin>
+          <groupId>com.bazaarvoice.maven.plugins</groupId>
+          <artifactId>process-exec-maven-plugin</artifactId>
+          <version>0.8</version>
         </plugin>
       </plugins>
     </pluginManagement>

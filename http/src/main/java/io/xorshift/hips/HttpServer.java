@@ -47,6 +47,7 @@ public class HttpServer extends AbstractVerticle {
     r.get("/records/gender").handler(this::peopleSortedByGender);
     r.get("/records/birthdate").handler(this::peopleSortedByBirthDate);
     r.get("/records/name").handler(this::peopleSortedByLastName);
+    r.get("/healthcheck").handler(this::healthCheck);
     r.route().handler(DEFAULT_HANDLER);
     r.route().failureHandler(this::failure);
 
@@ -106,6 +107,13 @@ public class HttpServer extends AbstractVerticle {
     httpResp.putHeader(HttpHeaders.CONTENT_TYPE, "text/plain");
     httpResp.setStatusCode(500);
     httpResp.end(failMessage);
+  }
+
+  void healthCheck(RoutingContext event) {
+    final HttpServerResponse httpResp = event.response();
+    httpResp.putHeader(HttpHeaders.CONTENT_TYPE, "text/plain");
+    httpResp.setStatusCode(200);
+    httpResp.end("OK");
   }
 
 }
