@@ -6,7 +6,104 @@
 
 == Prerequisites
 
-* Apache Maven 3+
-* JDK 8+
+* Apache Maven 3.x
+* JDK 8.x
+* Git
 * Fortitude
 
+== Getting Started
+
+Get the code:
+
+[source,bash]
+----
+git clone https://github.com/skanjo/hips.git
+----
+
+Build the project and run unit and integration tests:
+
+[source,bash]
+----
+mvn clean verify
+----
+
+== Running CLI
+
+Help using the CLI:
+
+[source,bash]
+----
+java -jar cli/target/hipscli.jar -help
+----
+
+Run using 3 sample input files:
+
+[source,bash]
+----
+java -jar cli/target/hipscli.jar -files \
+cli/src/test/resources/records_comma_10.txt,\
+cli/src/test/resources/records_pipe_10.txt,\
+cli/src/test/resources/records_space_10.txt
+----
+
+== Running API
+
+Help using API:
+
+[source,bash]
+----
+java -jar http/target/hipshttp.jar -help
+----
+
+Start API on default port 8080, use `CTRL+C` to end process:
+
+[source,bash]
+----
+java -server -jar http/target/hipshttp.jar
+----
+
+Add some records
+
+.add_records.sh
+[source,bash]
+----
+#!/bin/bash
+
+curl -d "Elinore|Scoles|F|PaleVioletRed|1989-05-17" http://localhost:8080/records
+curl -d "Tom|Mikkelsen|M|MintCream|1990-06-13" http://localhost:8080/records
+curl -d "Deandre|Cartagena|M|LightCyan|1991-12-04" http://localhost:8080/records
+curl -d "Edmundo|Albarado|M|PaleGoldenrod|1991-12-27" http://localhost:8080/records
+curl -d "Renata|Gautreaux|F|Yellow|1993-11-23" http://localhost:8080/records
+curl -d "Terrie|Mcmonagle|F|Magenta|1996-02-27" http://localhost:8080/records
+curl -d "Sulema|Artiaga|F|Brown|1998-04-28" http://localhost:8080/records
+curl -d "Niesha|Daulton|F|DeepSkyBlue|1998-06-05" http://localhost:8080/records
+curl -d "Twana|Brodeur|F|AntiqueWhite|1998-11-13" http://localhost:8080/records
+curl -d "Jazmin|Ferrier|F|DeepPink|2000-09-27" http://localhost:8080/records
+----
+
+Get records sorted by gender and then last name ascending
+
+[source,bash]
+----
+curl http://localhost:8080/records/gender
+----
+
+Get records sorted by birth date ascending
+
+[source,bash]
+----
+curl http://localhost:8080/records/birthdate
+----
+
+Get records sorted by last name descending
+
+[source,bash]
+----
+curl http://localhost:8080/records/name
+----
+
+{empty} +
+
+'''
+
+^hidden^ [.underline]#in# ~plain~ [.line-through]#sight#
