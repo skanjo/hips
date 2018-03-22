@@ -1,6 +1,6 @@
 = hips
 
-. Collect input files
+. Merge and sort records
 . ?
 . Profit
 

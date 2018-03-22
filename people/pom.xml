@@ -8,11 +8,11 @@
   <parent>
     <groupId>io.xorshift</groupId>
     <artifactId>hips-parent</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2-SNAPSHOT</version>
   </parent>
 
   <artifactId>hips-people</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.2-SNAPSHOT</version>
 
   <name>HipsPeople</name>
 
