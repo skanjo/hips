@@ -16,7 +16,7 @@ public class InMemoryPeopleTest {
   private InMemoryPeople people;
 
   @Before
-  public void setUp() throws Exception {
+  public void setUp() {
     people = new InMemoryPeople();
   }
 

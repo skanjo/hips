@@ -18,7 +18,7 @@ class Person {
   private static final Pattern DELIMITER_PATTERN = Pattern.compile("[,| ]");
   private static final Splitter FIELD_SPLITTER = Splitter.on(DELIMITER_PATTERN);
   private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("M/dd/yyyy");
-  private static final SimpleDateFormat DATE_PARSE = new SimpleDateFormat("yyy-MM-dd");
+  private static final SimpleDateFormat DATE_PARSE = new SimpleDateFormat("yyyy-MM-dd");
 
   static Person createFromCsv(String record) {
     final List<String> fields = FIELD_SPLITTER.splitToList(record);

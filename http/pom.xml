@@ -8,11 +8,11 @@
   <parent>
     <groupId>io.xorshift</groupId>
     <artifactId>hips-parent</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
   </parent>
 
   <artifactId>hips-http</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1-SNAPSHOT</version>
 
   <name>HipsHttp</name>
 
@@ -24,12 +24,12 @@
     <dependency>
       <groupId>io.xorshift</groupId>
       <artifactId>hips-people</artifactId>
-      <version>1.0.0</version>
+      <version>1.0.1-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>io.xorshift</groupId>
       <artifactId>hips-people</artifactId>
-      <version>1.0.0</version>
+      <version>1.0.1-SNAPSHOT</version>
       <type>test-jar</type>
       <scope>test</scope>
     </dependency>

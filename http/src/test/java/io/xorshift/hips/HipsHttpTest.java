@@ -12,6 +12,7 @@ import static org.mockito.Mockito.*;
  * @since 0.6.0 3/20/18 4:11 PM
  */
 public class HipsHttpTest {
+
   private Config config;
   private HipsHttp http;
 
